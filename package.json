@@ -1,0 +1,26 @@
+{
+  "name": "portfolioweb",
+  "version": "1.0.0",
+  "description": "Portoflio Web Application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herrera-ignacio/portfolioWeb.git"
+  },
+  "author": "Ignacio Roman Herrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/herrera-ignacio/portfolioWeb/issues"
+  },
+  "homepage": "https://github.com/herrera-ignacio/portfolioWeb#readme",
+  "dependencies": {
+    "next": "^9.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
