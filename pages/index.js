@@ -1,4 +1,5 @@
 import React from 'react';
+import Typed from 'react-typed';
 import BaseLayout from '../components/layouts/BaseLayout';
 import { Container, Col, Row } from 'reactstrap';
 
@@ -7,6 +8,8 @@ import SuperComponent from '../components/SuperComponent';
 class Index extends SuperComponent {
 	constructor(props) {
 		super(props);
+
+		this.roles = ['Fullstack Developer', 'Solutions Architect', 'Agile team player']
 	}
 
 	render() {
@@ -44,6 +47,18 @@ class Index extends SuperComponent {
 										Get informed, collaborate and discover projects I was working on through the years!
 									</h1>
 								</div>
+								<Typed
+									loop
+									typeSpeed={60}
+									backSpeed={60}
+									strings={this.roles}
+									shuffle={false}
+									backDelay={1000}
+									loopCount={0}
+									showCursor
+									cursorChar="|"
+									className="self-typed"
+								/>
 								<div className="hero-welcome-bio">
 									<h1>
 										Let's take a look on my work.
