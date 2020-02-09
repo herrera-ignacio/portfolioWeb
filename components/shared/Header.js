@@ -1,14 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 
-import '../../styles/main.scss';
-
 class Header extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
 				<Link href="/">
-					<a style={{'fontSize': '30px'}}> Home </a>
+					<a> Home </a>
 				</Link>
 
 				<Link href="/about">
@@ -33,9 +31,6 @@ class Header extends React.Component {
 						a {
 							font-size: 20px;
 						};
-						.customClass {
-							color: red;
-						}
 						`
 					}
 				</style>
