@@ -5,15 +5,10 @@ import '../../styles/main.scss';
 
 class Header extends React.Component {
 	render() {
-		const { title } = this.props;
 		return (
 			<React.Fragment>
-				<p> { title } </p>
-				<p className='customClass'>I am style P element</p>
-				<p className='customClassFromFile'>I am style P element</p>
-
 				<Link href="/">
-					<a style={{'fontSize': '40px'}}> Home </a>
+					<a style={{'fontSize': '30px'}}> Home </a>
 				</Link>
 
 				<Link href="/about">
