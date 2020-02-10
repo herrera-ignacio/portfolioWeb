@@ -1,43 +1,46 @@
-import React from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
+import {
+	Collapse,
+	Navbar,
+	NavbarToggler,
+	NavbarBrand,
+	Nav,
+	NavItem,
+} from 'reactstrap';
+import NavLink from './NavLink';
 
-class Header extends React.Component {
-	render() {
-		return (
-			<React.Fragment>
-				<Link href="/">
-					<a> Home </a>
-				</Link>
+const Header = () => {
+	const [isOpen, setIsOpen] = useState(false);
 
-				<Link href="/about">
-					<a> About </a>
-				</Link>
+	const toggle = () => setIsOpen(!isOpen);
 
-				<Link href="/portfolios">
-					<a> Portfolio </a>
-				</Link>
-
-				<Link href="/blogs">
-					<a> Blog </a>
-				</Link>
-
-				<Link href="/cv">
-					<a> CV </a>
-				</Link>
-
-				<style jsx>
-					{
-						`
-						a {
-							font-size: 20px;
-						};
-						`
-					}
-				</style>
-
-			</React.Fragment>
-			)
-	}
+	return (
+		<div>
+			<Navbar className="port-navbar port-default absolute" color="transparent" dark expand="md">
+				<NavbarBrand className="port-navbar-brand" href="/">Ignacio Herrera</NavbarBrand>
+				<NavbarToggler onClick={toggle} />
+				<Collapse isOpen={isOpen} navbar>
+					<Nav className="ml-auto" navbar>
+						<NavItem className="port-navbar-item">
+							<NavLink route="/" title="Home"/>
+						</NavItem>
+						<NavItem className="port-navbar-item" >
+							<NavLink route="/about" title="About"/>
+						</NavItem>
+						<NavItem className="port-navbar-item">
+							<NavLink route="/portfolios" title="Portfolios"/>
+						</NavItem>
+						<NavItem className="port-navbar-item">
+							<NavLink route="/blogs" title="Blogs"/>
+						</NavItem>
+						<NavItem className="port-navbar-item">
+							<NavLink route="/cv" title="CV"/>
+						</NavItem>
+					</Nav>
+				</Collapse>
+			</Navbar>
+		</div>
+	);
 }
 
 export default Header;
