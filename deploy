@@ -1,0 +1,9 @@
+-#!/bin/sh
+ssh jenkins@18.222.174.225 <<EOF
+ cd /webapp
+ git pull
+ npm install --only=prod
+ npm run build
+ npm run start
+ exit
+EOF
