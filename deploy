@@ -1,9 +1,11 @@
--#!/bin/sh
-ssh jenkins@18.222.174.225 <<EOF
- cd /webapp
+#!/bin/sh
+cat .ssh/id_rsa.pub
+ssh jenkins@172.31.23.120 -o StrictHostKeyChecking=no <<EOF
+ cd portfolioWeb
  git pull
  npm install --only=prod
  npm run build
  npm run start
  exit
 EOF
+
