@@ -4,9 +4,9 @@
   "description": "Portfolio Web Application",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "node server",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
