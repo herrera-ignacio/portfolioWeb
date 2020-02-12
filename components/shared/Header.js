@@ -9,6 +9,18 @@ import {
 } from 'reactstrap';
 import NavLink from './NavLink';
 
+const Login = () => {
+	return (
+		<NavLink route="/api/login" title="Login"/>
+	)
+};
+
+const Logout = () => {
+	return (
+		<NavLink route="/api/logout" title="Logout"/>
+	)
+};
+
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -35,6 +47,12 @@ const Header = () => {
 						</NavItem>
 						<NavItem className="port-navbar-item">
 							<NavLink route="/cv" title="CV"/>
+						</NavItem>
+						<NavItem className="port-navbar-item">
+							<Login />
+						</NavItem>
+						<NavItem className="port-navbar-item">
+							<Logout />
 						</NavItem>
 					</Nav>
 				</Collapse>
