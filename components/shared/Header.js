@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from 'react-use-auth';
 import {
 	Collapse,
 	Navbar,
@@ -9,15 +10,15 @@ import {
 } from 'reactstrap';
 import NavLink from './NavLink';
 
-const Login = () => {
-	return (
-		<NavLink route="/api/login" title="Login"/>
-	)
-};
+const AuthButton = () => {
+	const { isAuthenticated, login, logout } = useAuth();
 
-const Logout = () => {
+	const isAuth = isAuthenticated();
+
 	return (
-		<NavLink route="/api/logout" title="Logout"/>
+		<a onClick={isAuth ? logout : login} className="nav-link port-navbar-link">
+			{isAuth ? 'Logout' : 'Login'}
+		</a>
 	)
 };
 
@@ -49,10 +50,7 @@ const Header = () => {
 							<NavLink route="/cv" title="CV"/>
 						</NavItem>
 						<NavItem className="port-navbar-item">
-							<Login />
-						</NavItem>
-						<NavItem className="port-navbar-item">
-							<Logout />
+							<AuthButton />
 						</NavItem>
 					</Nav>
 				</Collapse>

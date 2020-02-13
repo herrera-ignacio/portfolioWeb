@@ -9,8 +9,7 @@ class Index extends SuperComponent {
 	constructor(props) {
 		super(props);
 
-		this.roles = ['Fullstack Developer', 'Solutions Architect', 'Agile team player']
-		console.log(process.env.TEST_VAR);
+		this.roles = ['Fullstack Developer', 'Solutions Architect', 'Agile team player'];
 	}
 
 	render() {

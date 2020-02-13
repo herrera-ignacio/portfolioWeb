@@ -1,15 +1,9 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
-const path = require('path');
+const nextEnv = require('next-env');
+const dotenvLoad = require('dotenv-load');
 
-const configPath = path.join(__dirname, '/config/.env');
-console.log(configPath);
-require('dotenv').config({ path: configPath });
+dotenvLoad();
+const withNextEnv = nextEnv();
 
-console.log(process.env);
-
-module.exports = withCSS(withSass({
-	env: {
-		TEST_VAR: process.env.TEST_VAR,
-	},
-}));
+module.exports = withNextEnv(withCSS(withSass({})));

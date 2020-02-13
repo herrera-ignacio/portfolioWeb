@@ -9,4 +9,4 @@ node_modules
 .next
 
 # Keys
-config/.env
+.env

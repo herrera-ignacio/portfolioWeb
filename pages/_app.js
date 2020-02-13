@@ -1,22 +1,40 @@
 import React from 'react';
 import App from 'next/app';
+import { AuthProvider } from 'react-use-auth';
+import { useRouter } from 'next/router';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/main.scss';
 
-export default class MyApp extends App {
-	static async getInitialProps({ Component, router, ctx }) {
-		let pageProps = {};
+function MyApp({ Component, pageProps, auth0Params }) {
+	const router = useRouter();
 
-		if (Component.getInitialProps) {
-			pageProps = await Component.getInitialProps(ctx);
-		}
+	const { domain, clientId } = auth0Params;
+	debugger;
+	console.log(auth0Params);
 
-		return { pageProps }
+	return (
+		<AuthProvider
+			navigate={router.push}
+			auth0_domain={domain}
+			auth0_client_id={clientId}
+		>
+			<Component {...pageProps} auth0Params={auth0Params} />
+		</AuthProvider>
+	);
+}
+
+export default class _App extends App {
+	static async getInitialProps(appContext) {
+		const appProps = await App.getInitialProps(appContext);
+		const auth0Params = {
+			domain: process.env.NEXT_STATIC_AUTH0_DOMAIN,
+			clientId: process.env.NEXT_STATIC_AUTH0_CLIENT_ID,
+		};
+		return { ...appProps, auth0Params };
 	}
 
 	render () {
-		const { Component, pageProps } = this.props;
-		return <Component {...pageProps} />
+		return <MyApp {...this.props} />;
 	}
 }
