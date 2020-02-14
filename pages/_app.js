@@ -6,12 +6,11 @@ import { useRouter } from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/main.scss';
 
+
 function MyApp({ Component, pageProps, auth0Params }) {
 	const router = useRouter();
 
 	const { domain, clientId } = auth0Params;
-	debugger;
-	console.log(auth0Params);
 
 	return (
 		<AuthProvider
@@ -24,17 +23,19 @@ function MyApp({ Component, pageProps, auth0Params }) {
 	);
 }
 
-export default class _App extends App {
-	static async getInitialProps(appContext) {
-		const appProps = await App.getInitialProps(appContext);
-		const auth0Params = {
-			domain: process.env.NEXT_STATIC_AUTH0_DOMAIN,
-			clientId: process.env.NEXT_STATIC_AUTH0_CLIENT_ID,
-		};
-		return { ...appProps, auth0Params };
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+	let pageProps = {};
+
+	if (Component.getInitialProps){
+		pageProps = await Component.getInitialProps(ctx);
 	}
 
-	render () {
-		return <MyApp {...this.props} />;
-	}
-}
+	const auth0Params = {
+		domain: process.env.NEXT_STATIC_AUTH0_DOMAIN,
+		clientId: process.env.NEXT_STATIC_AUTH0_CLIENT_ID,
+	};
+
+	return { pageProps, auth0Params }
+};
+
+export default MyApp;
