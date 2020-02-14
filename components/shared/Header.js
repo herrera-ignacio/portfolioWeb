@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useAuth } from 'react-use-auth';
 import {
 	Collapse,
 	Navbar,
@@ -9,18 +8,7 @@ import {
 	NavItem,
 } from 'reactstrap';
 import NavLink from './NavLink';
-
-const AuthButton = () => {
-	const { isAuthenticated, login, logout } = useAuth();
-
-	const isAuth = isAuthenticated();
-
-	return (
-		<a onClick={isAuth ? logout : login} className="nav-link port-navbar-link">
-			{isAuth ? 'Logout' : 'Login'}
-		</a>
-	)
-};
+import NavAuthButton from '../NavAuthButton';
 
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +38,7 @@ const Header = () => {
 							<NavLink route="/cv" title="CV"/>
 						</NavItem>
 						<NavItem className="port-navbar-item">
-							<AuthButton />
+							<NavAuthButton />
 						</NavItem>
 					</Nav>
 				</Collapse>

@@ -6,6 +6,9 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = routes.getRequestHandler(app);
 
+/* Middleware */
+const { checkJWT, handleAuthError } = require('./services/auth');
+
 const secretData = [
 	{
 		title: 'SecretData 1',
@@ -21,13 +24,15 @@ app.prepare()
 	.then(() => {
 		const server = express();
 
-		server.get('/api/v1/secret', (req, res) => {
+		server.get('/api/v1/secret', checkJWT, (req, res) => {
 			return res.json(secretData);
 		});
 
 		server.get('*', (req, res) => {
 			return handle(req, res)
 		});
+
+		server.use(handleAuthError);
 
 		server.use(handle).listen(80, (err) => {
 			if (err) throw err;
