@@ -2,7 +2,6 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayout';
 import BasePage from '../components/BasePage';
 import withAuth from '../components/hoc/withAuth';
-
 import { getSecretData } from '../actions';
 
 class Secret extends React.Component {
@@ -59,4 +58,4 @@ class Secret extends React.Component {
 	}
 }
 
-export default withAuth(Secret);
+export default withAuth(Secret, 'admin');

@@ -1,6 +1,8 @@
 const jwt = require('express-jwt');
 const jwksClient = require('jwks-rsa');
 
+const UNAUTHORIZED_MESSAGE = { title: 'Unauthorized', detail: 'Please check you have permission for this' };
+
 const checkJWT = jwt({
 	secret: jwksClient.expressJwtSecret({
 		cache: true,
@@ -13,14 +15,26 @@ const checkJWT = jwt({
 	algorithms: ['RS256']
 });
 
+checkAdmin = (req, res, next) => {
+	const user = req.user;
+	const admins = ['ignacioromanherrera@gmail.com'];
+
+	if (user && admins.includes(user.email)) {
+		next();
+	} else {
+		return res.status(401).send(UNAUTHORIZED_MESSAGE);
+	}
+};
+
 const handleAuthError = (err, req, res, next) => {
 	if (err.name === 'UnauthorizedError') {
-		res.status(401).send({ title: 'Unauthorized', detail: 'Please check you have permission for this' });
+		res.status(401).send(UNAUTHORIZED_MESSAGE);
 	}
 	next();
 };
 
 module.exports = {
 	checkJWT,
+	checkAdmin,
 	handleAuthError,
 };

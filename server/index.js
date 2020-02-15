@@ -7,7 +7,11 @@ const app = next({ dev });
 const handle = routes.getRequestHandler(app);
 
 /* Middleware */
-const { checkJWT, handleAuthError } = require('./services/auth');
+const {
+	checkJWT,
+	checkAdmin,
+	handleAuthError
+} = require('./services/auth');
 
 const secretData = [
 	{
@@ -24,7 +28,15 @@ app.prepare()
 	.then(() => {
 		const server = express();
 
+		server.get('/api/v1/test', checkJWT, (req, res) => {
+			return res.status(200).send({ title: 'success' });
+		});
+
 		server.get('/api/v1/secret', checkJWT, (req, res) => {
+			return res.json(secretData);
+		});
+
+		server.get('/api/v1/onlyAdmin', checkJWT, checkAdmin, (req, res) => {
 			return res.json(secretData);
 		});
 
