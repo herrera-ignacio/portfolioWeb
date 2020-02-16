@@ -3,6 +3,7 @@ const jwksClient = require('jwks-rsa');
 
 const UNAUTHORIZED_MESSAGE = { title: 'Unauthorized', detail: 'Please check you have permission for this' };
 
+// This will populate req.user if token is valid
 const checkJWT = jwt({
 	secret: jwksClient.expressJwtSecret({
 		cache: true,
