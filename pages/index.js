@@ -9,12 +9,12 @@ class Index extends SuperComponent {
 	constructor(props) {
 		super(props);
 
-		this.roles = ['Fullstack Developer', 'Solutions Architect', 'Agile team player']
+		this.roles = ['Fullstack Developer', 'Solutions Architect', 'Agile team player'];
 	}
 
 	render() {
 		return (
-			<BaseLayout className="cover">
+			<BaseLayout className="cover" headerType="index">
 				<div className="main-section">
 					<div className="background-image">
 						<img src="/static/images/background-index.png"  alt="background"/>
@@ -27,9 +27,9 @@ class Index extends SuperComponent {
 									<div className={`flipper`}>
 										<div className="back">
 											<div className="hero-section-content">
-												<h2> Full Stack Web Developer </h2>
+												<h2> Software Engineer </h2>
 												<div className="hero-section-content-intro">
-													Have a look at my portfolio and job history.
+													AWS Solutions Architect, Javascript Expert.
 												</div>
 											</div>
 											<img className="image" src="/static/images/section-1.png"/>
@@ -43,8 +43,9 @@ class Index extends SuperComponent {
 							<Col md="6" className="hero-welcome-wrapper">
 								<div className="hero-welcome-text">
 									<h1>
-										Welcome to the portfolio website of Filip Jerga.
-										Get informed, collaborate and discover projects I was working on through the years!
+										Welcome to my portfolio.
+										Discover the projects I've been working on through the years.
+										Want me on your team? You can hire me!
 									</h1>
 								</div>
 								<Typed
@@ -61,7 +62,7 @@ class Index extends SuperComponent {
 								/>
 								<div className="hero-welcome-bio">
 									<h1>
-										Let's take a look on my work.
+										Let's take a look at my work.
 									</h1>
 								</div>
 							</Col>

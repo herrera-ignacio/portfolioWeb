@@ -1,4 +1,9 @@
 const withSass = require('@zeit/next-sass');
 const withCSS = require('@zeit/next-css');
+const nextEnv = require('next-env');
+const dotenvLoad = require('dotenv-load');
 
-module.exports = withCSS(withSass());
+dotenvLoad();
+const withNextEnv = nextEnv();
+
+module.exports = withNextEnv(withCSS(withSass({})));
